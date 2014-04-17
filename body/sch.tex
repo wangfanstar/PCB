@@ -1,0 +1,246 @@
+
+\section{原理图部分}
+
+电路图设计结构分类（Design Structure）：
+\begin{enumerate}
+  \item 分层式电路设计(Hierarchical Design):设计比较复杂的电路时用,是一种从上而下的
+设计方格.
+  \item \label{flat_design}拼接式电路设计(Flat Design):只有一个层次电路设计，不包含子电路框图，可以有多
+页电路存在.
+  \item 单页式电路设计(One-page Design):只有单独的一页电路图.
+下面重点讲下分层式电路的画法.
+\end{enumerate}
+
+我们一般用第 \ref{flat_design} 种方式，在一个层次中设计多页原理图。
+
+
+\subsection{属性设置}
+
+\subsubsection{物料单}
+原自定义的 ORCAD 元器件属性不能有中文和特殊符号如 \%,$*$,使用下列方法，可以导出有中文属性的元器件列表。
+    \begin{enumerate}
+                      \item 在LIBRARY中建立好库文件，元件增加 Comment\_{}CH  （具体型号）、Description\_{}CH （种类）等属性，
+                      \item 在配料单中设置如下，就可以按照标准的出料单用EXCEL导出.
+     \end{enumerate}
+     \quad 让物料单按所需格式导出表格设置命令如下：\\
+{\wuhao
+\begin{shaded}
+  \begin{verbatim}
+    Item\tComment_CH\tDescription_CH\tQuantity\tReference
+    {Item}\t{Comment_CH}\t{Description_CH}\t{Quantity}\t{Reference}
+  \end{verbatim}
+\end{shaded}}
+其中$\backslash$t 是表示他们之间间隔一个 Tab (空格)
+       在 ORCAD 中的设置如 \ref{bill}所示：
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=8cm]{BILL}\\
+  \caption{物料单设置}\label{bill}
+\end{figure}
+
+
+\subsubsection{ORCAD原理图库属性}
+批量修改：\fbox{EDIT}$\rightarrow$\fbox{browse}$\rightarrow$\fbox{parts}\\
+
+
+同步更新：\fbox{Design Cache}$\rightarrow$\fbox{replace
+cache}$\rightarrow$\fbox{replace \ldots properties}
+
+
+\subsubsection{ORCAD 高效快捷键}
+
+
+
+\rowcolors{1}{}{lightgray}
+\begin{longtable}[H]{cl}
+\caption{ORCAD 快捷键} \label{strap_sb710} \\
+\toprule \multicolumn{1}{c}{\textbf{快捷键 }} &  %居中
+\multicolumn{1}{l}{\textbf{说明}}  \\ \midrule %居中
+\endfirsthead
+
+\multicolumn{2}{c}%
+{{\kai \thetable{}ORCAD 快捷键 -~- 接上页}} \\
+\toprule \multicolumn{1}{c}{\textbf{快捷键}} &  %居中
+\multicolumn{1}{l}{\textbf{说明 }}  \\ \midrule  %居中
+\endhead
+
+\multicolumn{2}{r}{{\kai 接下页}} \\ \bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+F4  & 重复上次操作\\
+W&画线\\
+B&总线\\
+P&放置元气件\\
+E&总线接入线\\
+J&放置节点\\
+X&不连接\\
+F&电源\\
+N&网络标号\\
+G&地\\
+T&放置文本\\
+Y&折线\\
+F10&下页\\
+SHIFT+F10 &上页\\
+CTRL+G&转到坐标\\
+R ,SHIFT+R &翻转\\
+I& 放大\\
+O &缩小\\
+
+\end{longtable}
+
+
+
+\subsubsection{annotate 标号属性}
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{annotate_config}
+\caption{annotate 参数}
+\end{figure}
+对应含义如下：
+\fbox{\parbox{8cm}{
+Scope：\\
+Update entire design：更新整个设计\\
+Update selection：更新选择的部分\\
+Action：\\
+Incremental reference update：\\
+在现有的基础上进行增加排序\\
+Unconditional reference update：\\
+无条件进行排序\\
+Reset part reference to “?”：\\
+把所有的序号都变成“?”\\
+Add Intersheet References：\\
+在分页图纸间的端口的序号加上图纸编号\\
+Delete Intersheet References：\\
+删除分页图纸间的端口的序号上的图纸编号\\
+Combined property：\\
+把对话框中的属性相结合\\
+Reset reference numbers to begin at 1 each page：\\
+编号时每张图纸都从1开始\\
+Do not change the page number：\\
+不要改变图纸编号\\}}
+
+\subsubsection{MODE 属性}
+\rowcolors{1}{}{lightgray}
+\begin{tabular}{cp{8cm}}
+\toprule
+  Mode & ：检查模式 \\
+  \midrule
+  Instance(样本原型) & : 在复合分层电路结构中，有两个或则多个子电路框图对应
+的相同的下一层次子电路。因此就存在一个层次子电路被多
+处应用的现象。在Capture 中， 将原始的子电路称为
+Instance. \\
+Occurrence(引用) & : 将每一个”引用”称为Occurrence\\
+\bottomrule
+\end{tabular}
+
+\subsubsection{drc 属性}
+
+drc 的检查选项如下图所示
+\begin{figure}[H]
+  \includegraphics[width=14cm]{drc_check}\\
+  \caption{DRC 检查参数}\label{drc_check_config}
+\end{figure}
+
+\begin{enumerate}
+
+
+\item 选中要检查的电路，进行DRC 设置；\\
+\includegraphics[width=10cm]{drc_check1}
+
+\item 点OK 按钮\\
+\includegraphics[width=10cm]{drc_check2}
+
+\item 根据DRC 出错提示进行电路修改.打开电路图；\\
+\includegraphics[width=10cm]{drc_check3}
+
+\item 根据记事本中关于 Error 的描述或则双击绿色的圆圈，如下提示\\
+\includegraphics[width=10cm]{drc_check4}\\
+
+问题出在有重复网络，该类问题大部分是元件编号重复，我们发现上图中有两个 CN303,
+将其中一个修改过来就可以了。
+
+
+\end{enumerate}
+
+\subsection{常用设计技巧}
+
+
+\subsubsection{AD原理图封装转换ORCAD}
+    在 AD 中，点FILE$\rightarrow$SAVE PROJECT AS
+    保存为DSN文件，同理元器件原理图库也可以
+
+\subsubsection{模块电路保存调用}
+
+\begin{enumerate}
+  \item 选中电路，执行File/Export Selection；\\
+  \includegraphics[width=12cm]{sch_moudle1}\\
+
+  \item 调用保存的电路，执行File/Import Selection；\\
+  \includegraphics[width=12cm]{sch_moudle2}\\
+
+  \item 点Add Library，选择刚才我们所保存电路的路径，如下\\
+  \includegraphics[width=12cm]{sch_moudle3}\\
+\end{enumerate}
+
+\subsubsection{多窗口显示同一电路图}
+
+如下图所示：\\
+
+  \includegraphics[width=12cm]{multi_windows}\\
+
+
+
+\subsubsection{orcad 转 PDF}
+
+装虚拟打印机，可用 ADOBE ACROBAT 安装软件，选择打印，在下拉框中选择 ADOBE PDF 打印机，点击打印即可。如下图所示：\\
+
+{\centering
+  \includegraphics[width=8cm]{orcad_pdf}\\
+  }
+  
+  
+
+\subsubsection{规则设置}
+自动检测 warning 和 error
+\begin{enumerate}
+  \item 检测未连接的引脚，显示出 warning 或 error 。
+  \item 在 offpage 连接符后加上对应的页码。
+  \item 
+\end{enumerate}
+
+
+\subsubsection{ORCAD 注意事项}
+
+\begin{enumerate}
+\item\color{red} 复制粘贴时必须注意：
+    \begin{itemize}
+      \item 复制有多个部件的元器件时，粘贴其他部分的时候标号会和上部分的标号不一致，须手动改过来！
+      \item 如果是从 AD 转换成的 ORCAD 原理图，千万不要直接在 offpage 的网络标号上直接修改属性，其显示属性修改完后可能网络属性仍然不变，非常危险，而且检查不出来！
+    \end{itemize}
+    \normalcolor
+  \item 使用ORCAD首先要建立工程，和其他软件类似也可以建立自己的元件库FILE/NEW/LIBRARY，然后就可以在里面设
+计自己的库了啊，但是在设计库的时候一般的要求线的类别，如输入，输出，电源，三态等，这些都要对照DATASHEET
+选择，否则在DRC检查的时候会出现错误!
+  \item 有些设计需要多个电源的时候，在orcad库里的元件很多是隐藏电源的，如果你不显示出来的话，系统默认VCC，这
+样会使设计出错，那么可以用鼠标左键点击元件选中，然后点击右键，选择 EDIT PART 就可以修改了.
+  \item 画原理图的时候网络标号在线的两端最好都标注上，以便在DRC检查的时候可以轻松发现问题，而且可以尽量保
+证安全啊。
+  \item 在画总线的时候，要给总线起名字，而且总线的命名格式是如DIO[0..7]或者DIO[0:7]，这样子。总线的名字一定
+要写，否则DRC检查不能通过，还有画总先接入线的时候可能需要画很多，那有一种快捷的办法，就是把第一个接入
+线放好的时候，可以用鼠标左键点击接入线，沿着总线向你想要放的紧挨着的接入线的位置放下，然后点F4就可以
+轻松的放接入线了，还有其他的有规律的线都可以用这种方法!
+  \item 建立新页，一张电路图也许不能够画完所有的电路图，所以就需要分页，这样可以在管理窗口点击.dsn文件的子
+目录中的 schmetics 右键点，然后 NEW PAGE 就可以了，但是页与页之间一定要用 off-page connector 符号连接，原则
+是出来的都用 offpage left-L，进入的用offpageleft-R，而且在同一页的这种标号最好放齐，进来的都放在页面的
+左边，出去的都放在页面的右边
+  \item 画原理图要分模快画，同一模快的放在一块
+  \item 相同元件的标号的放置，如果是水平放置的元件把标号和值放在元件两侧，尽量靠近元件，垂直放置的时候，放在
+一侧上下放置，值在上，标号在下
+  \item 如果在画图的过程中，某些元件需要改动或者删除的话，一定要重新给元件进行标号，那么首先要把标号变成问
+号的形式，然后用软件的排列可以给元件按照顺序编号
+  \item 生成网络表要在管理窗口下，点.dsn 的文件，然后点 tools/creat netlists，在生成网络表之前一定要把元件的
+封装添好。
+\end{enumerate}
+

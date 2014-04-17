@@ -1,0 +1,574 @@
+
+\section{PCB 部分}
+
+\subsection{allegro 操作设置}
+
+\subsubsection{快捷键设置}
+
+找到pcbenv文件夹中的env文件，在第二行加入
+
+\begin{shaded}
+\begin{Verbatim}
+alias Del Delete
+alias Pgdown zoom out
+alias Pgup zoom in
+alias ~R angle 90
+alias ~F mirror
+alias ~Z next
+alias End redisplay
+alias Insert Define grid
+alias Home Zoom fit
+\end{Verbatim}
+\end{shaded}
+
+
+\~{}表示CTRL键，可自己再另外定义其他快捷方式
+
+\subsubsection{鼠标手势设置}
+\textcolor[rgb]{0.00,0.00,1.00}{
+鼠标手势使用方法：}
+
+ALLEGRO 自带的 Stroke 功能，一边按住 Ctrl 键，一边用鼠标右标在工作区域滑动，可实现不同的操作命令。
+\ref{stroke}为系统自定义 Strokes，自定义 Strokes 可在\fbox{Tools}$\rightarrow$\fbox{Utilities}$\rightarrow$\fbox{Stroke Editor}。
+
+~\\\indent
+\textcolor[rgb]{0.00,0.00,1.00}{
+不用按 Ctrl 键的设置方法：}
+
+\fbox{setup}$\rightarrow$\fbox{User Preference}$\rightarrow$\fbox{Ui}$\rightarrow$\fbox{Input}$\rightarrow$\checkmark\fbox{no\_dragpopup}
+
+\begin{table}[H]
+  \centering
+  \caption{系统自定义 Stroke 鼠标手势功能}\label{stroke}
+  \rowcolors{1}{}{lightgray}
+  \begin{tabular}{cc}
+    \toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    Stroke & 功能 \\
+    \midrule
+    C & Copy \\
+    M & Move \\
+    Z & Zoom In \\
+    U & Oops（undo） \\
+    W & Zoom Workd \\
+    \^{} & Delete \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection{移动器件时改变封装定位处}
+
+\subsubsection{ALLEGRO 高效快捷键}
+如\ref{quick}所示：多用快捷键将大大提高工作效率\\
+
+\begin{table}[H]
+  \centering
+  \caption{快捷键}\label{quick}
+  \rowcolors{1}{}{lightgray}
+  \begin{tabular}{ll}
+    \toprule
+     按键 & 对应指令 \\
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    \midrule
+    CTRL+N & 新建 \\
+    CTRL+O & 打开 \\
+    F6 & DONE 完成操作 \\
+    SHIFT+F6 & 移动 \\
+    SHIFT+F5 & 复制 \\
+    CTRL+D & 删除 \\
+    F4 & 信息查询 \\
+    SHIFT+F4 & 测量 ，可查看线宽线距\\
+    F3 & CONNECT 连线操作 \\
+
+    SHIFT+F3 & 推挤 \\
+    F10 & 网格显示 \\
+    F2  & 使PCB缩放适应整个窗口 \\
+    F11 & 放大     \\
+    F12 & 缩小 \\
+    F8 & 后退 \\
+    F9 & 取消 \\
+
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\subsubsection{ALLEGRO 操作对应命令}
+
+如\hyperlink{command_mapping}{\color{blue}\uline{附录}}中所示，可以在 HELP 文档中搜索  COMMAND 找到 COMMAND MAPPING 来查找操作对应命令。如\ref{command_map}所示。
+
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=13cm]{command_map}\\
+  \caption{在 help 文档中查询操作命令}\label{command_map}
+\end{figure}
+
+
+\subsubsection{绘制图形的精确坐标定位}
+
+\rowcolors{1}{}{lightgray}
+\begin{tabularx}{12cm}{ccX}
+\toprule
+操作 &命令&说明\\
+\midrule
+\textcolor[rgb]{0.00,0.00,1.00}{输入绝对坐标} & x m n & m 为 x 坐标，n 为 y 坐标。 \\
+\textcolor[rgb]{0.00,0.00,1.00}{输入相对坐标} & ix m n & m 为相对上一点的 x 坐标距离，n 为相对上一点的 y 坐标距离。\\
+\bottomrule
+\end{tabularx}
+
+
+\subsubsection{移动器件时改变封装定位处}
+
+选择移动命令后，如下所示，在OPTION处可自己定义移动时的封装定位处。
+
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=6cm]{pick}\\
+  \caption{改变器件定位点}\label{pick_component}
+\end{figure}
+
+
+\subsubsection{库设置}
+
+可在封装放在与 BRD 同一个文件夹下，即可调用，但会比较乱。
+
+\begin{enumerate}
+  \item 将库元器件直接放在 BRD 同一个文件夹中，可自动引用此库元器件
+  \item \fbox{Setup}$\rightarrow$\fbox{User Preference}$\rightarrow$\fbox{Path}$\rightarrow$\fbox{Library}$\rightarrow$...
+
+      主要是 padpath 和 psmpath 两部分的路径
+\end{enumerate}
+
+
+\subsubsection{注意事项}
+\begin{enumerate}
+  \item 同时在原理图里选中多个器件时，必须同时框住，才能在 ALLEGRO 里多个器件同时移动，如果按 CTRL 一个一个选中，则 ALLEGRO 里会高亮所有器件，但移动只能移一个。
+  \item 不能在 PCB 中单独放一个焊盘，必须为这个焊盘再建一个 DRA 文件，而且每个 DRA 封装都必须有PIN1脚。
+      对应每个安装孔都是有 DRA 文件的。里面可能就一个焊盘。必须为 CONNECT PIN
+\end{enumerate}
+
+
+\subsection{allegro 参数设置}
+
+\subsubsection{显示，关闭所有层}
+
+有时为了发现错误，不知道在哪一层，可以在 Display $\rightarrow$ color/visiblity $\rightarrow$ global visibility 选择 ON 和 off 来进行所有层显示的切换
+
+\subsubsection{导入网表设置}
+选择导入 DESIGN ENTRY CIS 的网表，有以下选项：
+
+\begin{itemize}
+  \item Place changed component
+    \begin{itemize}
+      \item Always: 无论元器件在电路图中是否修改，该元件会放在原处
+      \item Never: 如果元器件被修改过，不将它放于电路板中
+      \item If same symbol: 如果元器件修改过，但封装不变，元件仍然保留在原处
+    \end{itemize}
+  \item Allow etch removal during ECO: 进行 2 次以后的输入网络表时，Allegro 会删除多余的线。
+  \item Ignore Fixed Properties：有 Fixed 选项的元素时，选项此项可忽略错误
+\end{itemize}
+
+
+\subsubsection{导入 dxf 设置}
+
+注意事项：
+\begin{shaded}
+ \begin{enumerate}
+   \item 把 incremental additonal 勾上，否则会清空原有的布局布线设计，只显示 dxf 的图形。
+   \item DXF 的外框必须是完整的多义线，不能是一段一段的线拼起来的封闭线，否则不能 Z-COPY 外框，不方便电源和地层的铺铜。
+   \item 一般将 dxf 的参考外框导入一不需要的层，或新建一个 cad 层。在 PCB 设计中不用时关掉。如下图所示
+\begin{center}
+  \includegraphics[width=10cm]{dxf_edit}\\
+\end{center}
+
+ \end{enumerate}
+\end{shaded}
+
+\subsubsection{导入元器件坐标设置}
+
+\fbox{File}$\rightarrow$\fbox{import}$\rightarrow$\fbox{placement}\\
+注意要点：\\
+\begin{enumerate}
+  \item 元器件必须未放置在 PCB 中，导入后才可以正确地放在坐标上，若已放置，请先删除。
+  \item 注意单位是 MIL 还是 MM
+  \item 导入的 txt 文件可根据自己的需要进行修改，改标号、正反面、旋转角度等
+\end{enumerate}
+
+\subsubsection{电源网络飞线显示设置}
+因电源和地显示太多飞线不方便，可将其属性设成在自己引脚上以星号显示。设置步骤如\ref{rat_schedule}所示。
+记得不要在前面的框上打勾，直接点 OK 或 APPLY 就可以了，旁边有个显示属性的 TXT 文档，点 APPLY 后会显示属性增加。
+~\\~\\
+\fbox{EDIT}$\rightarrow$%
+\fbox{Properties}$\rightarrow$%
+\fbox{option 面板的 net}$\rightarrow$%
+\fbox{选择网络}$\rightarrow$%
+\fbox{Ratsnet\_Schedule}$\rightarrow$%
+\fbox{Power and Ground}
+
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=14cm]{rat_schedule}\\
+  \caption{设置电源飞线显示}\label{rat_schedule}
+\end{figure}
+
+\subsubsection{布板常用规则设置}
+
+本规则以常用的 CPCI 板卡规则为例，其设计可看情况参考\\
+\begin{enumerate}
+  \item 间距\\
+        首先 SHAPE 大面积铺铜到线及各孔的距离最小为
+0.2mm，建议都设为 0.3mm, 其中 shape 到 shape 设为 0.5mm 或更高。线
+line 到其他网络的距离设为 0.178 ，这样可以在 CPCI 连接器里走 2
+根线。如图所示：\\
+
+  \includegraphics[width=14cm]{line_spce_cons}\\
+ \includegraphics[width=14cm]{shape_cons}\\
+
+
+  \item 线宽 \\
+
+  \item 等长 \\
+
+  \item 铺铜 \\
+
+  \item 区域 \\
+
+\end{enumerate}
+
+\subsubsection{AD PCB图封装转换ALLEGRO}
+
+\newcounter{buzhou_pcb} %不同环境计数器的名称也必需不同
+\begin{list}
+{\bfseries\sffamily 步骤\,\arabic{buzhou_pcb}:\hfill}
+{\setlength{\parsep}{\parskip}
+ \setlength{\itemsep}{0ex plus0.1ex}
+ \setlength{\labelwidth}{4em}
+ \setlength{\labelsep}{0.2em}
+ \setlength{\leftmargin}{6.2em}
+ \setlength{\rightmargin}{2em}
+ \usecounter{buzhou_pcb} \setcounter{buzhou_pcb}{0}
+ \upshape
+}
+
+
+\item \textcolor[rgb]{0.50,0.50,1.00}{AD 转成 PROTEL :} 将 PCB 文件另存为 PROTEL 2.8 ASCII .PCB 文件
+
+\item \textcolor[rgb]{0.50,0.50,1.00}{PROTEL 转成 ORCAD : }打开 CADENCE 16.2 的 LAYOUT PLUS ，IMPORT
+选项的 PRTOTEL PCB，选择转化的 PCB 文件，并转成 MAX 文件。
+
+\item \textcolor[rgb]{0.50,0.50,1.00}{ORCAD 转成 BRD :} 新建 BRD 文件，IMPROT 选 ORCAD LAYOUT。
+
+\item \textcolor[rgb]{0.50,0.50,1.00}{BRD 导出 LIB :} EXPORT 选 LIBRARIES ，全选，EXPORT
+得到元器件的封装，这时焊盘的相对位置都是正确的，把焊盘换成自己库中正确的焊盘，加入
+RES 标记 layout-$>$labels-$>$refdes 在REF DES的 TOPSILK
+层中，再设定所占区域 set up -$>$ areas-$>$package
+boundary。对应所在的package geometry的 place-bound-top层中
+
+
+\end{list}
+\color{red}
+\textbf{ 注意事项：\begin{enumerate}
+            \item 最大的问题：有时候转过去的 AD
+封装引脚左右是反的，切记核对，大多是正常的，如果遇到反的情况可以多试几次，试下放在板子背面。
+            \item
+安装孔都被转成连接焊盘了，在封装中要将其去除，重新加一个，记得保存下焊盘的坐标信息。
+            \item
+焊盘都得重新换过，或者改成合格焊盘后，保存成对应的名称，保存到自己的库内
+            \item 记得把所在文件夹加入到 CADENCE
+的库路径内，否则打开转出的文件会看不到焊盘，注意保持英文和无空格路径。
+             \item  必须放在英文目录下ORCAD才能导入PROTEL PCB
+             \item 必须在.PCBDOC中加入封装，再转换成.PCB文件才能使用，不能直接在.PCB中加入封装
+              \item export 的选项要全部勾上，特别是 No Library Dependencies，否则生成封装找不到焊盘
+          \end{enumerate}
+}
+\color{black}
+
+\subsubsection{引入外部设置}
+通过 import 设置可引入之前或别人的设置，不用再重复设置。
+已发现的可引入的有以下几种，推荐引入\textcolor[rgb]{0.50,0.50,1.00}{层数，ARTWORK，颜色}这三种常用设置：
+\textcolor[rgb]{1.00,0.00,0.00}{注意引入规则设置时须将各层的名字改成与原规则层数一致，否则不起作用，建议统一设成 LAYER2,LAYER3...格式。}
+\begin{enumerate}
+  \item 层数设置：将以前的 PCB export TECH 文件，再导入即可，以后多层板不用每次手工再加入层数，建议 4，6，8，10 层板各导出
+TECH 文件，以后再画板可重新导入，另外单位也会导入进去，注意设置好 MM
+或是 MIL
+  \item 颜色设置：PARA 参数文件，注意 EXPORT
+时选择需要的选项，不要全选，因为删掉很麻烦。
+    \item ARTWORK设置：PARA 参数文件，建议将 4，6，8，10
+层对应的 ARTWORK 设置都保存一个参数文件，这样每次生成 GERBE
+文件将非常方便。
+    \item 元器件位置设置：可用 EXPORT 选 placement 选项，导出为TXT
+文件，里面保存了元器件的坐标，旋转角度，标号，可对其进行修改或根据自己需要增加删除元器件，比较适合抄别人的板子，或替换个别元器件。
+  \item 规则设置，CONSTRAINT
+文件，默认是 5 MIL 的线宽线距，建议设置好 7MIL 的线宽线距再导入。有时导入后的层数会发生变化。
+    \item DXF 文件：一般用于 CAD 确定的外形尺寸，建议全部导入至 CADENCE
+的 BOARD GEOMERY 的 ASSEMBLY-DETAIL 层，在 BRD
+文件通过打开和关闭此层来定位元器件。 但导入后 BRD
+文件会丢失以前的布局设置，只显示当前导入的外形，所以只能在布板前导入设计。
+\end{enumerate}
+
+\color{red}
+注意事项：
+\begin{enumerate}
+  \item 由于导入后各层的名称不会变化，所以除 TOP 和 BOTTOM 层外，建议统一使用 LAYER2
+，LAYER3，LAYER4，等来命名各信号和电源层。方便导入以后的设计同时也方便
+PCB 加工厂确定各层的顺序，不要使用 VCC，GND 等其他名字来命名层。
+
+\end{enumerate}
+\color{black}
+
+\subsubsection{批量修改网络拓扑属性设置}
+在自动布线前设计好网络的拓扑结构，对多个焊盘共用一个网络的布线特别有用，如 CPCI 背板中，可在设置中批量改成 Minimum spanning tree\textcolor[rgb]{1.00,0.00,0.00}{\footnote{\color{red}因为不确定 Driver PIN 是哪个，用其他拓扑可能会导致布线时绕过最近的 PIN 而连到比较远的PIN} } 属性再进行自动布线。步骤如下：\\[0.5cm]
+\fbox{Constraint Manage}$\rightarrow$\fbox{electrial}$\rightarrow$\fbox{wire}$\rightarrow$\fbox{Topology}$\rightarrow$\fbox{Schedule}
+
+
+\subsubsection{拓扑结构的设置}
+
+在布线时，如果多个引脚共同一个网络，则其布线策略可有多种形式，这就需要设置其网络的拓扑结构来进行自动布线的设置。
+主要参考 Cadence Help 的 Working with Topologies 章节。\hyperlink{sigxp}{\textcolor[rgb]{0.00,0.00,1.00}{\uline{见附录}}}，拓扑设置修改参考手册上的步骤。
+\paragraph{T 结点的设置}
+即设置布线时的分叉交点。\hyperlink{sigxp}{参考帮助文档}。
+
+\paragraph{Minimum Spanning tree 拓扑}
+如\ref{min_span_tree}所示，特点如下：
+\begin{itemize}
+  \item 用布线长度最短的策略连接所有的 PIN 引脚；
+  \item 一个 PIN 可以连接任意数目的 PIN；
+  \item 首先从第一个 driver 出发，找到最近的 PIN 并布线连接，然后找未布线的 PIN 中与布完线后的任一 PIN 最近的一个并布线，一直重复此过程直到布线完成。
+\end{itemize}
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=8cm]{min_span_tree}\\
+  \caption{Minimum spanning tree 拓扑结构图}\label{min_span_tree}
+\end{figure}
+
+\paragraph{Daisy Chain 拓扑}
+菊花链拓扑，如\ref{daisy_chain}所示，特点如下：
+
+\begin{itemize}
+  \item  在每个引脚最多只连接两个其他引脚的前提下，用布线长度最短的策略连接所有的 PIN 引脚；
+  \item 首先从第一个 driver 出发，找到最近的 PIN 并布线连接，以这个最近的 PIN 为原点，再找最近未布线的 PIN 进行连接，如此重复直到引脚连接完成。
+  \item 与 minimum spanning tree 不同的是 Daisy Chain 进行下一次布线前已确定好参考 PIN （\textcolor[rgb]{0.00,0.00,1.00}{最后的一个}），不能再连接到第一个 PIN 。而 minimum spanning tree 没有 PIN 的限制，只要是最近的 PIN 就行。
+\end{itemize}
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=10cm]{daisy_chain}\\
+  \caption{Daisy Chain  拓扑结构图}\label{daisy_chain}
+\end{figure}
+
+\paragraph{Source Load Daisy Chain 拓扑}
+
+如\ref{s_daisy_chain}所示，Source Load Daisy Chain 拓扑类似 Daisy Chain ，不同的是要先将 Driver PIN 连接完再连接 Reiceive PIN。
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=10cm]{s_daisy_chain}\\
+  \caption{Source Load Daisy Chain 拓扑结构图}\label{s_daisy_chain}
+\end{figure}
+
+\paragraph{Star 拓扑}
+如\ref{star}所示，首先 Driver PIN 以 Daisy Chain  拓扑连接完成后，所有的 Receive PIN 都连接到最后一个 Driver PIN 的引脚上。图中 1 表示第一步连接 Driver PIN ，图中 2 表示 Receive PIN 从最近的 PIN 开始，都连接到最后一个 Driver PIN 上，这里为方便理解都看作第 2 步，实际上会按距离的长短来排序进行。
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=10cm]{star}\\
+  \caption{Star拓扑结构图}\label{star}
+\end{figure}
+
+\paragraph{Far End Cluster 拓扑}
+如\ref{far_end_cluster}所示，不同的是最后一个 Driver PIN 和 Receive PIN 以 T 结点的方式连接，不直接连接到引脚上。
+\begin{figure}[H]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=10cm]{far_end_cluster}\\
+  \caption{Far End Cluster 拓扑结构图}\label{far_end_cluster}
+\end{figure}
+
+\subsubsection{ALLEGRO 自动布线设置}
+
+与 AD 最本质的区别，也是多花几个月学 CANDENCE 之后发觉 最 NB
+的一项功能，学会了之后，你将摆脱 AD
+的拉线工人般的苦力活，你可以轻松地一边喝咖啡一边工作。
+
+\paragraph{规则设置要点}
+\begin{enumerate}
+\item
+DIFFERENT 的 neck 设得比正常时小 1 mil，不然很多 MITTER 后拐角处会小
+0.001mil 的间距，会有DRC错误。uncouple length 设大一点，400mil
+因为从不同引脚出来的差分脚的间距有时会很长。
+\item 自动布线是会按 PHYSIC
+规则设定的线宽进行布线，注意是否设置了区域规则，有优先级顺序。
+\item
+请先将电源平面和地平面设定好后再自动布线，电源线和地线一般自己拉。比如去耦电容，最好自己一个一个地打过孔接地，自动一般会全连起来，再打一个过孔接地，这种方式不利于去耦。
+\end{enumerate}
+
+\paragraph{半自动拉线}
+在规则中先设定好线宽，线距和过孔。
+不管路径，随便找一条路点过去，快到终点时点右键 finsh
+,只要对面无障碍物就可以。线很不平，坑坑洼洼怎么办，点\includegraphics[width=0.5cm]{smooth}，再用推挤工具调整大致位置。
+\paragraph{SUPER 自动拉线}
+
+此项针对干要将几十几百根线一起差分内等长，差分对间也等长的拉线工作而言。在
+AD 干这种事情一般都是在虐待自己的脑细胞和身体，在 CADENCE
+里则意味着你将喝咖啡的时间从一分钟提高到 10 分钟。\\
+对于非差分线，设置自动布线，设置完后，点自动布线，查看最大长度，将最大长度加减裕量设在规则内，（最好后加小数点后两位）然后再自动布线，布完后点
+MITTER , 一般的线长会自动在几个 MIL 误差范围内。
+
+
+差分线因为内部有多个规则设置，一旦有违反设置的地方，结果就有很大一部分不等长，经多次试验，按以下规则设置，可使差分线尽可能符合规则，使最终等长结果
+测试结果可使常用的差分线自动布线后等长在2mil范围内。\\
+
+\newcounter{buzhou_auto}
+\begin{list}
+{\bfseries\sffamily 步骤\,\arabic{buzhou_auto}:\hfill}
+{\setlength{\parsep}{\parskip}
+ \setlength{\itemsep}{0ex plus0.1ex}
+ \setlength{\labelwidth}{4em}
+ \setlength{\labelsep}{0.2em}
+ \setlength{\leftmargin}{6.2em}
+ \setlength{\rightmargin}{2em}
+ \usecounter{buzhou_auto} \setcounter{buzhou_auto}{0}
+ \upshape
+}
+
+
+\item 设置 PHYSIC NET 规则，限定线宽，差分线宽线距，NECK，过孔类型
+
+\includegraphics[width=9cm]{PHYSICAL}
+\includegraphics[width=9cm]{PHYSICAL_DIFF_VIA}
+
+
+
+\item   设置 sigXploe
+的规则，设置差分线间距，相对线间误差，绝对长度（第二次布线时设），第一次开始布线
+\includegraphics[width=9cm]{DIFF_C}\\
+\includegraphics[width=9cm]{RELPRO_C}\\
+
+\item 设置 route automatic 规则，设置走线层，是否保护，共享过孔，MITTER,
+
+\item 选定网络名或 选 route nets by
+pick，布线完后查看最长的线长，加上 几百 MIL 后在 sigXploe
+中设定绝对长度，注意不要有多个绝对长度规则。
+\includegraphics[width=9cm]{PRO_C}\\
+
+\item 第二次自动布线，一般布完后就基本等长，有时几十根线中有一根差别很大，其他都一样长，这时候就手动拉一下，在 set preference 中的 routing 设置显示动态长度进度条，会看到三个绿色栏，手动拉一下， enjoy \\
+
+
+\includegraphics[width=9cm]{length_display.pdf}
+
+\item 自动布线的效果，在规则管理器中查看，ELECTIAL 的 NET $\rightarrow$
+
+ROUTING $\rightarrow$ min/max progration delays
+中用颜色显示了绝对长度的匹配程度，红色表示不符合，绿色表示符合，边上会显示误差值，一般在
+几个mil之内。 经常会有红色 0.01mil 的误差，把规则改下就行了，在
+toatal etch length 中 actual 栏中选中要分析的布线， 按 F9
+会给出网线的布线长度，或右键 analyze。布好后的效果如下图所示
+
+\includegraphics[width=10cm]{422_equal.pdf}\\
+\includegraphics[width=12cm]{lan_equal.pdf}\\
+\includegraphics[width=10cm]{lan_line.pdf}\\
+
+\end{list}
+
+\subsubsection{自动布线所需设置的规则}
+自动布线的质量严重依赖于规则的设置。好的规则可以很快地自动布出高质量的线，反之则悲剧。
+\paragraph{差分线规则}
+要想对差分线自动布线，推荐按以下规则设置差分线规则，如\ref{diff_rule}\\
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+\center
+  \includegraphics[width=10cm]{diff_rule}\\
+  \caption{差分线规则的设置}\label{diff_rule}
+\end{figure}
+其中规则设置的要点如\ref{diff_main}.\\
+\begin{table}[htbp]
+  \centering
+
+\begin{tabularx}{12cm}{lp{8cm}}
+  \toprule
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  Uncoupled Length & 除了平行走线的这段距离外的走线距离，Include 表示包括从引脚出来这段距离， Ignore 表示忽略。 \\
+  Phase Tolerance & 相位差: 差分线的两条长度之间的差值 \\
+  Primary Width(gap) & 自动布线优先线宽和线距\\
+  Neck Gap(width) & 其次可允许的最小线宽和线距 \\
+    Line Spacing & 值要小于 Neck 减 （-）Tolerance\\
+  \bottomrule
+\end{tabularx}
+ \caption{差分线规则要点}\label{diff_main}
+\end{table}
+
+\paragraph{间距规则}
+
+\paragraph{物理规则}
+
+
+
+\subsubsection{xnet 设置}
+  在 Constraint Manager 里可以设置 XNET，但是需要将对应的元器件都建立模型。在\fbox{Analyze} $\rightarrow$ \fbox{SI EMI SIM} $\rightarrow$ \fbox{Module} $\rightarrow$ 选择一个 xnet 中用到的元器件参数，输入任意值 $\rightarrow$ 然后 autosetup，确定
+
+  \begin{enumerate}
+    \item
+
+    原网络 KBDATA、KB\_DATA：
+
+    \includegraphics[width=4cm]{xnet_1}
+
+    Constraint Manager 显示：
+
+    \includegraphics[width=4cm]{xnet_2}
+
+    SIGXPLORER
+
+    \includegraphics[width=6cm]{xnet_3}\quad\includegraphics[width=6cm]{xnet_3_2}
+
+    \item  建立模型：找到 Xnet 中用到的器件，按本节方法生成 Module
+
+    \includegraphics[width=6cm]{xnet_4}
+
+    \item  自动生成xnet:
+
+    \includegraphics[width=4cm]{xnet_5} \quad  \includegraphics[width=4cm]{xnet_6}
+
+    \includegraphics[width=10cm]{xnet_7}
+  \end{enumerate}
+
+
+\subsubsection{相对等长设置}
+
+
+\paragraph{相对等长显示设置}
+
+
+\begin{enumerate}
+ \item 布线图中显示约束进度条：
+
+\includegraphics[width=12cm]{relative_11}
+
+  \item 管理器中显示所有长度数值：
+
+\includegraphics[width=6cm]{relative_1}\quad
+\includegraphics[width=6cm]{relative_2}
+
+\end{enumerate}
+
+\paragraph{相对等长约束设置}
+\begin{enumerate}
+  \item 建立组：选取要等长的一组线，创建组。
+
+\includegraphics[width=6cm]{relative_set1}
+  \item 设置相对约束：也可以在 SigXplorer 里设置约束。
+
+\includegraphics[width=6cm]{relative_set2}\quad
+  \item 设置 Target 线：默认的 target 线按以下规则设定，可以在 SigXplorer 里单独对最长的线将 delta 值改为 None。
+  \begin{itemize}
+    \item 有且只有一对 pin-pair delta 的值设为 None（\textcolor[rgb]{1.00,0.00,0.00}{不是 0}），此线为 Target。
+    \item 所有 pin-pair 都有 delta 值，则 delta 值最小的线为 Target
+    \item 多个 delta 值最小，则长度最长的 pin pair 线为 Target
+    \item 多个 delta 值为 None，则 长度最长的 pin pair 线为 Target
+  \end{itemize}
+\end{enumerate}
+

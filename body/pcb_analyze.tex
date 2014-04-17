@@ -1,0 +1,102 @@
+\section{PCB 简介}
+\subsection{PCB 的组成材料}
+PCB 主要由芯板( Core )， 半固化片( Prepreg )，铜片( Copper )，阻焊层( Solder )\footnote{即绿油，可以有各种颜色}组成。如\ref{pcb}所示\footnote{为 3D 图，用 Adobe Reader 9 以上版本可进行缩放旋转等操作 }：\\
+\begin{figure}[htbp]
+\begin{center}
+\begin{asy}
+size(12cm,6cm);
+import three;
+import labelpath3;
+import graph;
+import labelpath;
+import math;
+import tube;
+currentprojection=perspective(22cm,20cm,4cm);
+real u=1cm;
+surface cube_1cm;
+surface cube_copper;//基板大小
+surface cube_copper_top;
+//尺寸
+cube_1cm=scale3(u)*unitcube;
+cube_copper=zscale3(0.2)*cube_1cm;
+cube_copper_top=zscale3(0.1)*cube_1cm;//铜
+//芯板
+draw(cube_copper,lightgray);//FR4基板
+draw(shift(0,0,0.2u)*cube_copper_top,orange);//铜
+draw(shift(0,0,-0.1u)*cube_copper_top,orange);//铜
+//铜
+draw(shift(0,2.4u,-0.1u)*cube_copper_top,orange);//铜
+//半固化片
+draw(shift(0,1.2u,-0.1u)*cube_copper,lightgray);//
+draw(shift(0,1.2u,0.5u)*zscale3(0.5)*cube_copper,lightgray);//
+draw(shift(0,1.2u,1u)*zscale3(0.2)*cube_copper,lightgray);//
+\end{asy}
+\end{center}
+\caption{PCB 的构成}\label{pcb}
+\end{figure}
+
+
+\subsection{PCB 层厚设置：阻抗控制}
+
+ 每个层与层之间的厚度可由自己设定，在投板文件里说明给PCB生产厂家生产。如不特意说明各厂家会按畎认的序列来制作。设定的主要意义在于控制高速信号线的阻抗。
+
+ 厚度由生产 PCB
+ 的三种材料：铜片，半固化件，芯板决定\footnote{暂不考虑阻焊绿油的厚度}。如所示。
+ PCB 室（8室）所购芯板和半固化片的序列如下所示，芯板一次只能一张，半固化片最少2张，一般交替放置：\\
+
+\noindent
+ \fcolorbox{white}{lightgray}{\parbox[t]{14.5cm}{
+芯板：0.1，0.15，0.2，0.3，0.4，0.5，0.6，0.8，0.9，1.0，1.2，1.4，1.6，1.8\\
+半固化片：0.065，0.11，0.16 }}\\
+\color{black}
+
+以四层板为例，一般的顶层到第二层和底层到倒数第二层用半固化片，中间用芯板，最后上下层用两片铜片夹起来。
+最薄的板可只用半固化片做 0.2mm
+，一般用于绝缘，比如放在航插与印制板间，对应的安装孔都在绝缘板上打好。\\
+
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{3mm 厚 10层板设置}\label{10layer}
+  \begin{tabular}{llll}
+    \toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    \multicolumn{4}{c}{10 层设置 3mm  5信号层 （CPCI 背板 ）}\\
+    \midrule
+    层数 & 设定厚度 mm & 对应阻抗&备注 \\
+\rowcolor{lightgray}
+    TOP-2 & 0.13 & 1 层 单线：55    差分：96 & TOP层信号 2为地层 \\
+    2-3 & 0.5& 3层 单线：65        差分：90 & 3 层信号 4 层电源 \\
+\rowcolor{lightgray}
+    3-4 & 0.44 &  &  \\
+    4-5 & 0.4 & 5层 单线：51         差分：87 & 5 层信号 6 层地\\
+\rowcolor{lightgray}
+    5-6 & 0.24 &  &  \\
+    6-7 & 0.15 &  & 7 为电源\\
+\rowcolor{lightgray}
+    7-8& 0.44 & 8层 单线：65    差分:90  & 8 层信号 \\
+    8-9 & 0.5 &   &   \\
+\rowcolor{lightgray}
+    9-BOTTOM & 0.13 & 10层 单线：55    差分：96 & BOTTOM 层信号 9为地层  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+阻抗设计用 POLAR SI8000软件，如下图所示各总线的阻抗要求见附录，POLAR
+SI8000的使用示意图如下：
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{SI1}
+\includegraphics[width=7cm]{SI2}
+\caption{微带线阻抗}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{SI3}
+\includegraphics[width=7cm]{SI4}
+\caption{带状线阻抗}
+\end{figure}

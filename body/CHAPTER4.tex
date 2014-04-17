@@ -1,0 +1,172 @@
+\chapter{注意事项及推荐软件}
+ \thispagestyle{fancy}
+注意安装软件不要在中文和有空格的文件夹下，像\fcolorbox{red}{white}{Program
+File}这种文件夹。同样 PCB
+文件也不要保存在中文和有空格或特殊符号的文件夹下，不要小数点。否则有些高级功能不能使用或使用过程中死机。
+
+\section{推荐设置}
+\begin{enumerate}
+  \item CADENCE: 安装在 C 盘\\
+
+\begin{table}[ht]
+ \centering
+  \caption{Cadence 工作目录设置 }\label{cadence_catalog}
+
+  \begin{tabular}{llp{6cm}}
+    \toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    文件夹&  注释 & 子文件夹\\
+    \midrule
+
+
+    PCB & ALLERGO 工作目录 &
+    \makebox[5cm][l]{NETLIST 网表文件夹}
+    \makebox[5cm][l]{相关参数文件夹}    
+    \makebox[5cm][l]{投板文件夹}\\
+
+    \rowcolor[gray]{.8}
+    SCH & ORCAD 工作目录 &
+    \makebox[5cm][l]{DSN 原理图文件}
+    \makebox[5cm][l]{opj 工程文件} \\
+
+
+    CAD & AUTOCAD 工作目录 &
+    \makebox[5cm][l]{dxf 印制板导出文件}
+    \makebox[5cm][l]{dxg 出图文件}  \\
+
+
+    DOC & 工程参考文件 & \mbox{word  PDF PPT 参考文件}\\
+
+    \bottomrule
+  \end{tabular}
+
+\end{table}
+
+
+\end{enumerate}
+
+\section{SKILL 扩展功能}
+和 CADENCE 配合使用，可以自已编程设定各种功能，网上有很多已写好的实用小程序，可以实现元器件对齐，DRC定位，查找孤立的线，未连接的线，网络表在线编辑等功能。
+安装设置如下，以我自己的安装为例，其他功能扩展也一样，附件为华为的扩展插件，如需安装请参考其手册:\\
+{\centering
+\textattachfile{body/huawei.pdf}{\textcolor[rgb]{0.50,0.00,1.00}{\uline{华为的扩展 skill.pdf 双击打开}}}\\
+\attachfile[icon=Paperclip]{stella.ar}
+\textcolor[rgb]{1.00,0.00,0.50}{\uline{华为扩展包，在 PDF 的附件图标下另存为，保存 ar 文件为 rar 文件}}\\
+}
+
+
+  \includegraphics[width=14cm]{stella}\\
+
+
+\begin{enumerate}
+  \item 将压缩包“stella” 解压至任一地址，添加环境变量 stella\_{}skill
+  值为解压的地址。如\ref{stella_skill}所示
+
+  \item 将下列代码，复制到 TXT 文件，保存为 allegro.ilinit 文件，放在 pcbenv 的文件夹中 注意路径更改为对应的解压包路径。
+\textcolor[rgb]{1.00,0.00,0.00}{注意路径是斜杠，非反斜杠，}直接从 windows 里面复制路径须注意把斜杠改为反斜杠。\\
+
+\textattachfile{body/allegro.ilinit}{\textcolor[rgb]{1.00,0.00,0.50}{\uline{allegro 配置文件，在附件中下载}}}
+
+\tiny
+\lstinputlisting{body/allegro.ilinit}
+
+\xiaosi
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=12cm]{stella_skill}\\
+\caption{设置 SKILL 环境变量}\label{stella_skill}
+\end{figure}
+
+\item 找到 \fbox{C:/Cadence/SPB\_{}16.2/share/pcb/text/cuimenus}中的对应 .men文件，在 allegro.men 和 apd.men 后对应加上如下代码：
+注：加在未尾即可，和其它菜单是相同的关系。注意 BEGIN 和 END 的对应关系，不要直接加在最未尾，\textcolor[rgb]{1.00,0.00,0.00}{未尾应还剩一个 END。}
+\\
+
+\wuhao
+\begin{verbatim}
+POPUP "&STELLA"
+　BEGIN
+    　　　MENUITEM "Align Symbol",　　　　　 "align_sym"
+    　　　MENUITEM "DRC Walker...",　　　　　"drc walk"
+    　　　MENUITEM "Find Dang Line/Cline",　 "find_dang"
+    　　　MENUITEM "Find Stubs",　　　　　　 "find_stubs"
+    　　　MENUITEM "Hilight Net without TP",　"hl_ntp"
+    　　　MENUITEM "Netlist Editor",　　　　 "net_editor"
+　END
+\end{verbatim}
+\xiaosi
+\end{enumerate}
+安装后重启 ALLERGRO 即可在 help 后看到增加的 stella 功能按钮。
+
+\begin{shaded}
+\begin{description}
+  \item[Align Symbol]
+~\\
+\textcolor[rgb]{0.00,0.00,1.00}{
+使用元器件对齐功能：布局时比较方便。注意只能对齐有标号的的器件，后来手动加的封装不能对齐。}
+\begin{enumerate}
+  \item 输入 align\_sym 命令或点开菜单，一般打开菜单后选 PIN1 , group ，BOTH 选项，不要关闭面板以方便观察。
+  \item 选中第一个器件，命令行会提示 Key Component ``CE8'' Selected，引号中的标号为你选中的器件（注意把 option 的 symbol 勾上，否则选不中器件）。 PIN1 为基准点，选中完第一个后，选择要对齐的其他器件，选完后右键 complete 所有元器件以 PIN1 向第一个元器件对齐。
+  \item 对齐后可继续使用，再选第一个器件（Key Component），可以在面板上调整对齐选项，如此重复2-3步。不对齐可用右键 Done 结束对齐命令。
+\end{enumerate}
+
+  \item[DRC Walker]  ~\\
+  \textcolor[rgb]{0.00,0.00,1.00}{错误检查器：直接输入命令 drc walk 或点击对应菜单进入选项面板，勾上对应选项可自动定位到错误地点，选择定位区域的大小，选择查看何种类型的错误，
+      显示错误信息。}
+
+  \item[Find Danging Clines]  ~\\
+  \textcolor[rgb]{0.00,0.00,1.00}{ 查看无网络的孤立线：有时删除未删干净剩余的无网络线段，或是原理图中未用页连接符导致两边相同网络未相连，
+      此选项可自动查找并删除对应的线段。}
+
+  \item[Find Stubs] ~\\
+  \textcolor[rgb]{0.00,0.00,1.00}{
+        查找桩线：有时连线时在中间会不小心多画一些小线段，附在原线上，
+        这些不小心画出的有网络的信号线可用此选项来进行查找}
+\end{description}
+
+\end{shaded}
+
+\section{封装制作工具}
+可方便地制作各种过孔，安装孔，建议选中所有型号的过孔焊盘全部生成，以后就可以直接在里面选择了。Cadence
+做封装是很费时的事情，用这个小软件可以延长你的休闲时间。注：本软件为免费软件，作者开了个小玩笑，0.0.8.0
+版本的从2010年4月1号之后只能在每个月的1号才能使用了，要用只能改日期。不过改日期也太麻烦了，用IDA看了一下，发现作者检测了一下时间，在xx之后不是1号就退出
+，解决方法如下：\textcolor[rgb]{0.00,0.00,1.00}{用 UltraEdit把FPM.exe打开，搜索"33 C0 E9 F2"，找到后换成"8B C0 E9 00"，}如果找不到请再重装一次，\\
+原理：\\
+xor eax,eax 变成了 mov eax,eax     (相当于NOP)\\
+jmp xxxx   变成了 jmp [下一个地址] (相当于NOP)\\
+
+\fcolorbox{white}{lightyellow}{\textcolor{red}{\parbox{14cm}{本软件禁止安装在中文目录和有空格的目录下，在属性设置下选择\textcolor[rgb]{0.50,0.50,1.00}{最宽松}，焊盘尽量比
+datasheet 的推荐值要大一些，否则会导致生成的焊盘太小无法焊接}}\\}
+
+\begin{figure}[ht]
+  % Requires \usepackage{graphicx}
+   \centering
+  \includegraphics[width=12cm]{FOOTPRINT}\\
+  \caption{ALLEGRO 封装制作工具}\label{FOOTPRINT}
+\end{figure}
+
+\clearpage
+\section{阻抗计算工具}
+
+\begin{figure}[ht]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=12cm]{RES}\\
+  \caption{阻抗计算工具}\label{RES}
+\end{figure}
+\clearpage
+\section{温升计算工具}
+\begin{figure}[ht]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=12cm]{PCBTEMP}\\
+  \caption{温升计算工具}\label{PCBTEMP}
+\end{figure}
+
+\section{单位换算工具}
+\begin{figure}[ht]
+ \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=12cm]{MILTOMM}\\
+  \caption{单位换算工具}\label{MILTOMM}
+\end{figure}
+\clearpage

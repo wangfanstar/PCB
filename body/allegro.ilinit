@@ -1,0 +1,11 @@
+
+setSkillPath(buildString(append1(getSkillPath() "c:/CADENCE/stella")))
+;
+load("align_sym.il")
+load("net_editor.il")
+load("DRC_WALK.IL")
+load("find_dlines.il")
+load("mot_find_stubs.il")
+load("Find_Component.il")
+;
+

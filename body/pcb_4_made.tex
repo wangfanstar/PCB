@@ -1,0 +1,281 @@
+\section{四层PCB板制作过程}
+
+以 4 层 PCB 板为例介绍 PCB 的制作过程。
+
+\noindent1.化学清洗---【Chemical Clean】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.78in,height=2.48in]{pcb_4_made1}}
+\label{fig1}
+\end{figure}
+
+
+为得到良好质量的蚀刻图形，就要确保抗蚀层与基板表面牢固的结合，要求基板表面无氧化层、油污、灰尘、指印以及其他的污物。因此在涂布抗蚀层前首先要对板进行表面清洗并使铜箔表面达到一定的粗化层度。
+\newline
+内层板材：开始做四层板，内层（第二层和第三层）是必须先做的。内层板材是由玻璃纤维和环氧树脂基复合在上下表面的铜薄板。
+\newline
+ \newline
+2.裁板 压膜---【Cut Sheet Dry Film Lamination】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.75in,height=2.48in]{pcb_4_made2}}
+\label{fig2}
+\end{figure}
+
+
+涂光刻胶：为了在内层板材作出我们需要的形状，我们首先在内层板材上贴上干膜（光刻胶，光致抗蚀剂）。干膜是由聚酯簿膜，光致抗蚀膜及聚乙烯保护膜三部分组成的。贴膜时，先从干膜上剥下聚乙烯保护膜，然后在加热加压的条件下将干膜粘贴在铜面上。
+\newline
+ \newline
+3.曝光和显影【Image Expose】 【Image Develop】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.86in,height=2.36in]{pcb_4_made3}}
+\label{fig3}
+\end{figure}
+
+
+曝光：在紫外光的照射下，光引发剂吸收了光能分解成游离基，游离基再引发光聚合单体产生聚合交联反应，反应后形成不溶于稀碱溶液的高分子结构。聚合反应还要持续一段时间，为保证工艺的稳定性，曝光后不要立即撕去聚酯膜，应停留15分钟以上，以时聚合反应继续进行，显影前撕去聚酯膜。
+\newline
+显影：感光膜中未曝光部分的活性基团与稀碱溶液反应生产可溶性物质而溶解下来，留下已感光交联固化的图形部分。
+\newline
+ \newline
+4.蚀刻【Copper Etch】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.86in,height=2.36in]{pcb_4_made4}}
+\label{fig4}
+\end{figure}
+
+
+在挠性印制板或印制板的生产过程中，以化学反应方法将不要部分的铜箔予以去除，使之形成所需的回路图形，光刻胶下方的铜是被保留下来不受蚀刻的影响的。
+\newline
+ \newline
+5.去膜，蚀后冲孔，AOI检查，氧化 \newline
+【Strip Resist】 【Post Etch Punch】 【AOI Inspection】 【Oxide】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.86in,height=2.36in]{pcb_4_made5}}
+\label{fig5}
+\end{figure}
+
+
+去膜的目的是清除蚀刻后板面留存的抗蚀层使下面的铜箔暴露出来。``膜渣''过滤以及废液回收则须妥善处理。如果去膜后的水洗能完全清洗干净，则可以考虑不做酸洗。板面清洗后最后要完全干燥，避免水份残留。
+\newline
+ \newline
+6.叠板保护膜胶片【Layup with prepreg】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.76in,height=2.80in]{pcb_4_made6}}
+\label{fig6}
+\end{figure}
+
+
+进压合机之前需将各多层板使用原料准备好以便叠板(Lay-up)作业除已氧化处理之内层外尚需保护膜胶片(Prepreg)-环氧树脂浸渍玻璃纤维。叠片的作用是按一定的次序将覆有保护膜的板子叠放以来并置于二层钢板之间。
+\newline
+ \newline
+7.叠板铜箔 和真空层压 \newline
+【Layup with copper foil】【Vacuum Lamination Press】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.79in,height=2.83in]{pcb_4_made7}}
+\label{fig7}
+\end{figure}
+
+
+铜箔给目前的内层板材再在两侧都覆盖一层铜箔，然后进行多层加压（在固定的时间内需要测量温度和压力的挤压）完成后冷却到室温，剩下的就是一个多层合在一起的板材了。
+\newline
+ \newline
+8.CNC钻孔【CNC Drill】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.79in,height=2.92in]{pcb_4_made8}}
+\label{fig8}
+\end{figure}
+
+
+在内层精确的条件下，数控钻孔根据模式钻孔。钻孔精度要求很高，以确保孔是在正确位置。
+\newline
+ \newline
+9.电镀通孔【Electroless Copper】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.79in,height=2.93in]{pcb_4_made9}}
+\label{fig9}
+\end{figure}
+
+
+为了使通孔能在各层之间导通（使孔壁上之非导体部份之树脂及玻纤束进行金属化），在孔中必须填充铜。第一步是在孔中镀薄薄一层铜，这个过程完全是化学反应。最终镀的铜厚为50英寸的百万分之一。
+\newline
+ \newline
+10.裁板 压膜【Cut Sheet】 【Dry Film Lamination】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.79in,height=2.97in]{pcb_4_made10}}
+\label{fig10}
+\end{figure}
+
+
+涂光刻胶：我们有一次在外层涂光刻胶。 \newline
+ \newline
+11.曝光和显影【Image Expose】 【Image Develop】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.83in,height=3.02in]{pcb_4_made11}}
+\label{fig11}
+\end{figure}
+
+
+外层曝光和显影 \newline
+ \newline
+12.线路电镀：【Copper Pattern Electro Plating】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.70in,height=3.02in]{pcb_4_made12}}
+\label{fig12}
+\end{figure}
+
+
+此次也成为二次镀铜，主要目的是加厚线路铜和通孔铜厚。 \newline
+ \newline
+13.电镀锡【Tin Pattern Electro Plating】 \newline
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.75in,height=2.84in]{pcb_4_made_plate}}
+\label{pcb_plate}
+\end{figure}
+
+其主要目的是蚀刻阻剂,
+保护其所覆盖的铜导体不会在碱性蚀铜时受到攻击（保护所有铜线路和通孔内部）。
+\newline
+ \newline
+14.去膜【Strip Resist】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.75in,height=2.84in]{pcb_4_made13}}
+\label{fig13}
+\end{figure}
+
+
+我们已经知道了目的，只需要用化学方法，表面的铜被暴露出来。 \newline
+ \newline
+15.蚀刻【Copper Etch】 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.79in,height=2.77in]{pcb_4_made14}}
+\label{fig14}
+\end{figure}
+
+
+我们知道了蚀刻的目的，镀锡部分保护了下面的铜箔。 \newline
+ \newline
+16.预硬化 曝光 显影 上阻焊 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.86in,height=3.04in]{pcb_4_made15}}
+\label{fig15}
+\end{figure}
+
+
+【LPI coating side 1】 【Tack Dry】 【LPI coating side 2】【Tack Dry】
+\newline
+【Image Expose】【Image Develop】 【Thermal Cure Soldermask】 \newline
+阻焊层是为了把焊盘露出来用的也就是通常说的绿油层实际上就是在绿油层上挖孔把焊盘等不需要绿油盖住的地方露出来。适当清洗可以得到合适的表面特征。
+\newline
+ \newline
+17.表面处理 \newline
+
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=4.75in,height=3.04in]{pcb_4_made16}}
+\label{fig16}
+\end{figure}
+
+
+【Surface finish】 \newline
+\color{blue}$>$\normalcolor\quad HASL, Silver, OSP, ENIG 热风整平，沉银，有机保焊剂，化学镍金 \newline
+\color{blue}$>$\normalcolor\quad Tab Gold if any 金手指 \newline
+热风整平焊料涂覆ＨＡＬ(俗称喷锡)过程是先把印制板上浸上助焊剂，随后在熔融焊料里浸涂，然后从两片风刀之间通过，用风刀中的热压缩空气把印制板上的多余焊料吹掉，同时排除金属孔内的多余焊料，从而得到一个光亮、平整、均匀的焊料涂层。
+\newline
+金手指(Gold Finger,或称 Edge
+Connector)设计的目的在于藉由connector连接器的插接作为板对外连络的出口因此须要金手指制程之所以选择金是因为它优越的导电度及抗氧化性但因为金的成本极高所以只应用于金手指局部镀或化学金
+\newline
+ \newline
+ \newline
+最后总结一下所有的过程：\newline
+
+\noindent1) Inner Layer 内层 \newline
+\color{blue}$>$\normalcolor\quad Chemical Clean 化学清洗 \newline
+\color{blue}$>$\normalcolor\quad Cut Sheet Dry Film Lamination 裁板 压膜 \newline
+\color{blue}$>$\normalcolor\quad Image Expose 曝光 \newline
+\color{blue}$>$\normalcolor\quad Image Develop 显影 \newline
+\color{blue}$>$\normalcolor\quad Copper Etch 蚀铜 \newline
+\color{blue}$>$\normalcolor\quad Strip Resist 去膜 \newline
+\color{blue}$>$\normalcolor\quad Post Etch Punch 蚀后冲孔 \newline
+\color{blue}$>$\normalcolor\quad AOI Inspection AOI 检查 \newline
+\color{blue}$>$\normalcolor\quad Oxide 氧化 \newline
+\color{blue}$>$\normalcolor\quad Layup 叠板 \newline
+\color{blue}$>$\normalcolor\quad Vacuum Lamination Press 压合 \newline
+ \newline
+2) CNC Drilling 钻孔 \newline
+\color{blue}$>$\normalcolor\quad CNC Drilling 钻孔 \newline
+ \newline
+3) Outer Layer 外层 \newline
+\color{blue}$>$\normalcolor\quad Deburr 去毛刺 \newline
+\color{blue}$>$\normalcolor\quad Etch back - Desmear 除胶渣 \newline
+\color{blue}$>$\normalcolor\quad Electroless Copper 电镀通孔 \newline
+\color{blue}$>$\normalcolor\quad Cut Sheet Dry Film Lamination 裁板 压膜 \newline
+\color{blue}$>$\normalcolor\quad Image Expose 曝光 \newline
+\color{blue}$>$\normalcolor\quad Image Develop 显影 \newline
+~ \newline
+4) Plating 电镀 \newline
+\color{blue}$>$\normalcolor\quad Image Develop 显影 \newline
+\color{blue}$>$\normalcolor\quad Copper Pattern Electro Plating 二次镀铜 \newline
+\color{blue}$>$\normalcolor\quad Tin Pattern Electro Plating 镀锡 \newline
+\color{blue}$>$\normalcolor\quad Strip Resist 去膜 \newline
+\color{blue}$>$\normalcolor\quad Copper Etch 蚀铜 \newline
+\color{blue}$>$\normalcolor\quad Strip Tin 剥锡 \newline
+ \newline
+5) Solder Mask 阻焊 \newline
+\color{blue}$>$\normalcolor\quad Surface prep 前处理 \newline
+\color{blue}$>$\normalcolor\quad LPI coating side 1 印刷 \newline
+\color{blue}$>$\normalcolor\quad Tack Dry 预硬化 \newline
+\color{blue}$>$\normalcolor\quad LPI coating side 2 印刷 \newline
+\color{blue}$>$\normalcolor\quad Tack Dry 预硬化 \newline
+\color{blue}$>$\normalcolor\quad Image Expose 曝光 \newline
+\color{blue}$>$\normalcolor\quad Image Develop 显影 \newline
+\color{blue}$>$\normalcolor\quad Thermal Cure Soldermask 印阻焊
+ \newline
+6) Surface finish 表面处理 \newline
+\color{blue}$>$\normalcolor\quad HASL, Silver, OSP, ENIG 热风整平，沉银，有机保焊剂，化学镍金 \newline
+\color{blue}$>$\normalcolor\quad Tab Gold if any 金手指 \newline
+\color{blue}$>$\normalcolor\quad Legend 图例 \newline
+ \newline
+7) Profile 成型 \newline
+\color{blue}$>$\normalcolor\quad NC Routing or punch \newline
+ \newline
+8) ET Testing, continuity and isolation \newline
+ \newline
+9) QC Inspection \newline
+\color{blue}$>$\normalcolor\quad Ionics 离子残余量测试 \newline
+\color{blue}$>$\normalcolor\quad 100{\%} Visual Inspection 目检 \newline
+\color{blue}$>$\normalcolor\quad Audit Sample Mechanical Inspection \newline
+\color{blue}$>$\normalcolor\quad Pack {\&} Shipping 包装及出货 \newline
+ \newline
+说明图为Circuitronic美国总部做的，比较好看，拿过来用了。
+
+\clearpage

@@ -1,0 +1,126 @@
+\chapter{附录}
+\thispagestyle{fancy}   \fancyhead[R]{\song\wuhao 附录}
+
+\section{常用单位换算}
+\begin{table}[htbp]
+  \centering
+  \caption{单位换算}\label{translate}
+  \rowcolors{1}{}{lightgray}
+  \begin{tabular}{ll}
+    \toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    单位换算 & 备注\\
+    \midrule
+     1 OZ=35 um = 0.035 mm  & 一般 1 OZ 有的电源板用 2 OZ \\
+     1 mil = 0.0254 mm &   CPCI 及差分线间距一般用 7 MIL \\
+     1mm = 39.37mil&  火零线间距一般 2 MM \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\section{走线与过电流}
+
+PCB 走线宽度与过电流如\ref{oz_pcb}，随温度上升过电流会变小，设计时注意留裕量。
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{PCB 走线过电流与铜厚关系}\label{oz_pcb}
+\rowcolors{1}{}{lightgray}
+  \begin{tabular}{cccc}
+    \toprule
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+
+    宽度（mm） & 电流（A）1 oz & 电流（A）50 $\mu m$  & 电流（A）2 oz \\
+    \midrule
+    0.15 & 0.2 & 0.5 & 0.7  \\
+    0.2 & 0.55  & 0.7& 0.9  \\
+    0.3 & 0.8  & 1.1& 1.3 \\
+    0.4 & 1.1  & 1.35& 1.7 \\
+    0.5 & 1.35  & 1.7& 2 \\
+    0.6 & 1.6  & 1.9& 2.3 \\
+    0.8 & 2    & 2.4& 2.8 \\
+    1 & 2.3    & 2.6& 3.2 \\
+    1.2 & 2.7  & 3.0& 3.6 \\
+    1.5 & 3.2  & 3.5& 4.2 \\
+    2& 4       & 4.3& 5.1 \\
+    2.5 &4.5  & 5.4& 6 \\
+
+    \bottomrule
+  \end{tabular}
+\end{table}
+注意事项
+\begin{enumerate}
+  \item 用铜皮作导线通过大电流时，铜箔宽度的载流量应参考表中的数值降额50\%去选择考虑。
+  \item 上述表格中数值条件：1oz=35$\mu m$，2oz=70$\mu m$，$\Delta t =10\celsius$.
+\end{enumerate}
+
+\section{计算机总线阻抗控制}
+以下选自 COM-E 模块设计的标准，总结时钟线，高速差分线的控制比较重要，特别是网口。
+\begin{center}
+  \includegraphics[width=14cm]{pcie}\\
+  \includegraphics[width=14cm]{lvds}\\
+  \includegraphics[width=14cm]{lan}\\
+  \includegraphics[width=14cm]{sdvo}\\
+  \includegraphics[width=14cm]{pci}\\
+  \includegraphics[width=14cm]{sata}\\
+  \includegraphics[width=14cm]{usb}\\
+  \includegraphics[width=14cm]{lpc}\\
+  \includegraphics[width=14cm]{ide}\\
+\end{center}
+\clearpage
+
+\section{实验室图号设定}
+包括功能板和转接板以及线缆图，互联图。板号指在 PCB 上印的号码，图号是图纸上存的号码。\\
+\fcolorbox{white}{lightyellow}{\parbox{14.5cm}{
+\begin{enumerate}
+  \item 转接板：电气直接互接，无转换的 PCB\\装配图图号:~~\textcolor[rgb]{0.00,0.40,0.29}{\mbox{AQ2. 354.~\fbox{申请的板号}} }   \\ \quad PCB 板号：\textcolor[rgb]{0.00,0.50,0.25}{\mbox{AQ7.822.~\fbox{申请的板号}}}
+  \item 功能板：对电气信号进行了处理的 PCB\\装配图图号:~~\textcolor[rgb]{0.00,0.40,0.29}{\mbox{AQ2. 335.~\fbox{申请的板号}}}   \\  \quad PCB 板号：\textcolor[rgb]{0.00,0.40,0.29}{\mbox{AQ7.820.~\fbox{申请的板号}}}
+  \item 线缆图：在加固室的图号库系统内申请。
+  \item 互联图：和结构配合申请的图号。
+\end{enumerate}
+
+}}
+
+\section{Cadence 软件配置注意 }
+\color{red}
+\begin{enumerate}
+  \item 平面全设为正片，可以节省做 flash 的时间，也可以防止出错，易于识别。
+  \item 单位设为 mm ，art 文件中最小默认线宽设为 0.12mm ，热风焊盘根据需要选择是否添加
+  \item 默认规则中线宽线距设为 0.178mm（7mil），最小为 0.127mm(5mil)，shape 之间间距最小为 0.2mm。
+  \item 层之间命名以 LAYER2,LAYER3,$\cdots$,来进行，方便后续规则的延用和导入先前规则。
+\end{enumerate}
+\normalcolor
+
+\section{Cadence 软件菜单，图标含义 }
+\clearpage
+\phantomsection
+\includepdfmerge{appendix/ALLEGRO_MENU.pdf,1-13}
+
+\section{Cadence 参考文档 }
+
+
+\hypertarget{command_mapping}{~}\hypertarget{sigxp}{~}\textcolor[rgb]{0.00,0.00,1.00}{双击下面图标打开文档}
+
+\begin{center}
+\fbox{
+\textattachfile{appendix/Command_Mapping.pdf}{\parbox[b][4cm][c]{3cm}{ \color{red} Cadence \\操作命令大全}}
+}
+\qquad\qquad
+\fbox{
+\textattachfile{appendix/sigxp.pdf} %这里加入所添加的附件
+{\parbox[b][4cm][c]{3cm}{ \color{blue}SI SIGXP\\SI SigXplorer User Guide}}
+}
+~\\[0.5cm]
+\fbox{
+\textattachfile{appendix/Allegro Constraint Manager Reference.pdf}{\parbox[b][4cm][c]{3cm}{ \color{red} Cadence \\规则管理器约束手册}}
+}
+\qquad\qquad
+\fbox{
+\textattachfile{appendix/Allegro Platform Properties Reference.pdf} %这里加入所添加的附件
+{\parbox[b][4cm][c]{3cm}{ \color{blue}\\规则管理器属性参考手册}}
+}
+\end{center}
+\clearpage
+\phantomsection

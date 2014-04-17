@@ -1,0 +1,14 @@
+\section{PCB 检查流程}
+
+\subsection{检查报告}
+在菜单中选择TOOLS $\rightarrow$ quickrepors $\rightarrow$ 主要检查
+\begin{itemize}
+  \item 未放置的器件 Unplaced components
+  \item 未连接的引脚 Unconnected pin
+  \item DRC错误 Design Rules Check Report
+\end{itemize}
+
+容易出问题的还有铺铜，选择 shape report ,可以查看铜皮的属性，将前面有 no etch 属性的 shape 找到，打开所有层看其所在的位置。有时会在 Boundary 的层上有一些 SHAPE 导致铜不能 UPDATE TO SMOOTH ，需要打开对应层，删除其 SHAPE ，一般可以在 shape report 里查看到其 shape 属性为 No Etch。
+
+\subsection{修改注意事项} 
+有DRC 也可以生成 GERBE 文件，确定后设置好 ARTWORK，undefined width 须设成 0.12mm，这个宽度表示默认的丝印厚度，太粗了看不清，默认会 0 不显示丝印，须每层单独设置，无法批量修改。 artwork 的层数设置可以从以前的参数导入，必须保证对应的层的名称相同（除了 TOP 和 BOTTOM 外的其他几层的名字）。 

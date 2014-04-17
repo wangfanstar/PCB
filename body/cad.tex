@@ -1,0 +1,53 @@
+
+\section{装配图 }
+
+主要是 AUTOCAD2004 和 TT 辅助软件的运用。TT 可以方便地将 EXCEL
+中的数据按设定的格式导入到 CAD 中。
+
+\subsection{AUTOCAD 软件应用}
+注意从 PCB 等软件导出来的 CAD 图是彩色的，这样在 AUTOCAD
+中打印出来会模糊不清，请在打印前将线宽改为 0，颜色都改为白色。
+ \fcolorbox{white}{lightgray}{CAD 中的快捷命令：}
+\begin{itemize}
+  \item 移动： 输入 M 即可
+  \item 缩放：输入 SC ，按要求输入比例因子
+  \item 精确定位：相对移动输入 @ x,y 其中 x,y 表示相对移动的距离
+  \item
+文字替换：文字工具栏的查找与替换功能，可以方便地将选中的图形中的相关文字替换掉。
+\end{itemize}
+
+\textcolor[rgb]{0.50,0.00,1.00}{NB 的快捷键操作，如\ref{autocad_command}所示}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=7cm]{cad_command1}
+\includegraphics[width=7cm]{cad_command3}
+\\
+  ~\includegraphics[width=7cm]{cad_command2}
+\includegraphics[width=7cm]{cad_command4}
+  \caption{AutoCad 操作命令}\label{autocad_command}
+\end{figure}
+
+\fancyfoot[C]{}
+\clearpage
+\fancyfoot[C]{\textcolor[rgb]{0.00,0.59,0.00}{\thepage}/\pageref{LastPage}}
+
+\subsection{TT设置}
+\fcolorbox{white}{lightgray}{TT 设置}
+
+安装后，在 AUTOCAD 中输入 TT
+即可运行，新建两种设置（列表和明细），一个用在装配图，一个用在明细表。如\ref{TT_SET}所示。\\
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+    \center
+  \includegraphics[width=7cm]{TT1}\\
+  \caption{TT 的设置}\label{TT_SET}
+\end{figure}
+
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+    \centering
+\includegraphics[width=7cm]{TT2}
+\includegraphics[width=7cm]{TT3}\\
+  \caption{列表和明细的设置}\label{TT_SET2}
+\end{figure}

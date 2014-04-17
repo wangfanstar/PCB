@@ -1,0 +1,151 @@
+
+
+\usepackage{CJK,CJKnumb}  %CJKnumb是标题格式中文化的宏包
+\usepackage{times}
+
+\usepackage{etex}  % 解决宏包 no room for 。。。的错误
+\usepackage{caption2}                               % 按标准, 去掉图表号后面的:
+\usepackage{lipsum}   % To generate test text 产生测试文本
+
+%%%%%%%%%%%%%% 颜色 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[table,dvipsnames,svgnames]{xcolor}
+%\usepackage{xxcolor}
+
+%%%%%%%%%%%%%% PGF绘图宏包 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{format/pgf.tex}
+
+%%%%%%%%%%%%%% 图片表格符号支持 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[basic,box,gate,oldgate,ic,optics,physics]{circ}
+
+%%%%%%%%%%%%% 图表标题格式包 %%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{amsmath,amsfonts,amssymb} %
+\usepackage{latexsym,bm}        %公式符号
+\usepackage[misc,electronic,clock]{ifsym} %电气符号
+\usepackage{dingbat}
+\usepackage[Euler]{upgreek}
+\usepackage[Omega,upmu]{gensymb}
+\usepackage{wasysym}
+\usepackage{marvosym}
+
+
+
+
+%%%%%%%%%%%%%%%%    插图  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}       %插图宏包
+\usepackage{wallpaper}    %绘图文绕排宏包，页面背景宏包，
+\usepackage{picinpar} %与pgf宏包冲突
+
+%%%%%%%%%%%%%% 彩色表格，表格线条 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs,slashbox,colortbl,longtable,multirow,tabularx,dcolumn}                         %表格粗线,斜线,彩色表格,长表格
+
+
+%%%%%%%%%%%%% 页版面，边距设置 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[top=2.54cm,bottom=2.54cm,left=2.15cm,right=2.5cm,includehead,includefoot]{geometry}
+%上下2.54，左右2
+
+
+%%%%%%%%%%%%% 中文书签中文复制 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[pdftex,
+            colorlinks=no,
+            citecolor=blue,
+            linkcolor=blue,
+            anchorcolor=green,
+            urlcolor=blue,
+            pdfauthor={wangfan},%作者
+            pdfkeywords={51c},%关键词
+            pdfsubject={51c mcu},%主题
+            pdftitle={handbook of 51c},%标题
+            CJKbookmarks=true,
+            pdfborder={0 0 0},
+            %linktocpage=true, %加载此项后页码有链接而文字无链接
+            bookmarksnumbered=true,
+            bookmarksopen=false,
+            ]{hyperref}
+\usepackage{ccmap}               % 使生成的PDF文件支持复制等，对pdflatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titletoc}           %目录格式包
+
+%标题中文化
+\usepackage[bf,small,raggedright,indentafter,pagestyles]{titlesec}
+        %其中bf设置章节标题的字体为黑体，这也是默认值，可以略去。
+        %此外，还可以设 为rm(罗马体), sf(无衬线体), tt(打字机体), md(中等黑度),
+        %up(直立体), it(意大利斜体), sl(机械斜体), sc(小体大写字母)。
+        %small设置标题字体的尺寸，还可设为big(默认), medium, tiny。
+        %center使标题居中，还可以设为raggedleft(居左，默认), raggedright(居右)。
+        %indentafter相当于宏包indentfirst的作用，使标题下面的第一个段落正常缩进。
+        %pagestyles是申明后面要自定义页面样式。
+
+%\usepackage{tocloft}
+
+\usepackage{fancyhdr}       %自定义页眉页脚
+
+%%%%%%%%%%%%% 抄录环境 %%%%%%%%%%%%%
+\usepackage{fancyvrb,sverb}
+
+\input{format/asysyntax.tex} %listings语法高亮设置
+
+%%%%%%%%%%%%% 盒子环境 %%%%%%%%%%%%%
+\usepackage{framed}
+
+%%%%%%%%%%%%% 合并PDF文档 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pdfpages}
+
+%%%%%%%%%%%%% ASY绘图宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{asymptote}
+
+%%%%%%%%%%%%% SHAPE宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{shapepar}
+
+%%%%%%%%%%%%% 图片放置宏包 不放在文字前面 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{flafter,float}
+
+%%%%%%%%%%%%% 下划线宏包 %%%%%%%%%%%%%%%%%%%%%%
+ \usepackage[normalem]{ulem}%`加入宏包`
+ \usepackage{CJKfntef} %汉字下划线宏包
+
+%%%%%%%%%%%%%% 页码宏包 （与动画宏包冲突）%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage}
+
+%%%%%%%%%%%%% 动画宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{animate} % 与 tikz 部分宏包冲突
+
+%%%%%%%%%%%%% 行号宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage[left]{lineno} %与 tikz 宏包冲突
+
+%%%%%%%%%%%%% 视频宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{movie15} % 与 tikz 部分宏包冲突
+
+%
+%%%%%%%%%%%%%% 时间宏包 %%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{tdclock}
+
+%
+%%%%%%%%%%%%%% 短列表宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{shortlst}
+
+%%%%%%%%%%%%%% 列表编号宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{enumerate}
+
+
+%%%%%%%%%%%%% 附件宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{attachfile}
+
+
+%%%%%%%%%%%%% 脚注尾注宏包 %%%%%%%%%%%%%%%%%%%%%%
+\usepackage{threeparttable,endnotes}
+
+%%%%%%%%%%%%% 索引表 %%%%%%%%%%%%%%%
+\usepackage{makeidx}\makeindex
+%
+
+%\usepackage{fancybox} %与framed宏包冲突
+%%%%%%%%%%%%%% 生成HTML宏包 %%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{html,epsf}
+
+
+

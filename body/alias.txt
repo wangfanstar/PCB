@@ -1,0 +1,9 @@
+alias Del Delete
+alias Pgdown zoom out
+alias Pgup zoom in
+alias ~R angle 90
+alias ~F mirror
+alias ~Z next
+alias End redisplay
+alias Insert Define grid
+alias Home Zoom fit

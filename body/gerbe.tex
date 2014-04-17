@@ -1,0 +1,211 @@
+\section{GERBE 制板文件}
+   送去 PCB 厂的文件包括投板说明和投板文件两部分，如果用 AD 画的 PCB，只要将原来的 PCB 和投板说明发过去就可以，用Cadence，Mentor 等高级作图工具需将 PCB 转化成 Gerbe 文件。
+\subsection{印制板最终文件设置}
+ 在画板完成后，需要制作 GERBE 及钻孔文件，主要流程如下：\\
+注：有时生成不了 GERBE 文件可试着用 TOOL 的 Database Check 工具 Check 一下，有时 Check 完就好了。\\
+\newcounter{buzhou_gerbe}
+\begin{list}
+{\bfseries\sffamily 步骤\,\arabic{buzhou_gerbe}:\hfill}
+{\setlength{\parsep}{\parskip}
+ \setlength{\itemsep}{0ex plus0.1ex}
+ \setlength{\labelwidth}{4em}
+ \setlength{\labelsep}{0.2em}
+ \setlength{\leftmargin}{6.2em}
+ \setlength{\rightmargin}{2em}
+ \usecounter{buzhou_gerbe} \setcounter{buzhou_gerbe}{0}
+ \upshape
+}
+\item 规则检查设置，主要检查未连接的网络和违反规则的地方，有错则改至无错为止。{\color{red}注：有 DRC 错误也可生成 GERBE文件}\\
+       \begin{enumerate}
+         \item 未连线检查\\  \includegraphics[width=10cm]{FIG1}
+         \item 规则错误检查\\  \includegraphics[width=10cm]{FIG2}
+       \end{enumerate}
+
+\item 钻孔文件设置，按以下顺序依次设置，如有异形孔：如椭圆孔和方形孔需再加最后的NC-route步骤，无则可省略\\
+        \begin{enumerate}
+          \item 钻孔重新编号\\ \includegraphics[width=10cm]{FIG3}
+          \item 选 Auto $\rightarrow$ OK\\ \includegraphics[width=10cm]{FIG4}
+          \item DRILL层设置选默认\\ \includegraphics[width=10cm]{FIG5}
+          \item 单击左键选择放置的位置\\ \includegraphics[width=10cm]{FIG6}
+          \item 生成DRL文件\\  \includegraphics[width=10cm]{FIG7}
+          \item 默认设置，点DRILL生成钻孔文件\\ \includegraphics[width=10cm]{FIG8}
+          \item 生成异形孔（非圆钻孔：椭圆，方形孔）文件，单击 route\\  \includegraphics[width=10cm]{FIG9}
+        \end{enumerate}
+
+ \item ART GERBE文件设置，此步骤须设置的部分在图片中用红笔标识出来，包括每层ART文件需对应加上或减去相应的层，须和\ref{ART-GERBE}%
+     一致\\
+        \begin{enumerate}
+          \item  ART文件设置\\ \includegraphics[width=2cm]{FIG10}
+          \item 选 RS274X\\   \includegraphics[width=10cm]{FIG11}
+          \item 右键在上面可增加删除相应的层，和\ref{ART-GERBE} 一一对应\\ \includegraphics[width=10cm]{FIG12}
+          \item  选择要生成的文件打$\checkmark$\\ \includegraphics[width=10cm]{FIG13} \\
+                注意未定义线宽设为 0.12mm ，选正片， 热风焊盘不要将 full contact 加上
+        \end{enumerate}
+
+ \item GERBE文件查看
+        \begin{enumerate}
+          \item 新建一个PCB文件，点 subclass\\  \includegraphics[width=10cm]{FIG14}
+          \item 在 manufacture 里新建 artwork 层，关闭\\  \includegraphics[width=10cm]{FIG15}
+          \item import artwork \\  \includegraphics[width=10cm]{FIG16}
+          \item 选择文件，并设置好层，选 data origin ，load file \\  \includegraphics[width=10cm]{FIG17}
+        \end{enumerate}
+        设置完后可查看GERBE 文件，注意设置PCB的大小，否则可能放不下。
+
+\end{list}
+
+
+
+\subsection{投板相关文件}
+\begin{table}[H]
+\center
+\caption{投板文件}\label{ART}
+\begin{tabular}[htbp]{llp{4cm}}
+  \toprule
+  文件类型  & 注释 & 对应 PCB 层 \\
+  \midrule  \rowcolor[gray]{.8}
+
+   ART文件  & 光绘 & 文件外框、电气层、丝印层、阻焊层、钻孔文件（不用机器焊的可不用助焊层） \\
+   DRL ，ROU文件 & 钻孔异形孔文件 & NCDRILL和NCROUTE得来，不是 art 文件\\ \rowcolor[gray]{.8}
+   TXT文件 & 钻孔文件及光绘文件参数说明 & 说明 PCB 格式单位和相关设置参数（有时可不用） \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\center
+\caption{ GERBE (ART) 文件对应丝印层}\label{ART-GERBE}
+
+\begin{tabularx}{14cm}[htbp]{p{5cm}p{8.2cm}}
+  \toprule
+  文件类型  &  对应 PCB 层 \\
+  \midrule
+
+   TOP  &
+\mbox{BOARD GEOMETRY/OUTLINE}
+\makebox[8cm][l]{VIA CLASS/TOP}
+\makebox[8cm][l]{PIN/TOP}
+\mbox{ETCH/TOP}
+  \\
+  \rowcolor[gray]{.8}
+     LAYER2    &
+\mbox{BOARD GEOMETRY/OUTLINE}
+\mbox{VIA CLASS/LAYER2}
+\makebox[7cm][l]{PIN/LAYER2}
+\mbox{ETCH/LAYER2}
+  \\
+  LAYER3 &
+\mbox{BOARD GEOMETRY/OUTLINE}
+\mbox{VIA CLASS/LAYER3}
+\makebox[7cm][l]{PIN/LAYER3}
+\mbox{ETCH/LAYER3}
+  \\
+
+  \rowcolor[gray]{.8}
+            BOTTOM &
+\mbox{BOARD GEOMETRY/OUTLINE}
+\mbox{VIA CLASS/BOTTOM PACKAGE}
+\makebox[7cm][l]{PIN/BOTTOM BOARD}
+\mbox{ETCH/BOTTOM BOARD}
+ \\
+ SILKSCREEN\_{}TOP &
+\mbox{REF DES/SILKSCREEN\_{}TOP}
+\mbox{PACKAGE GEOMETRY/SILKSCREEN\_{}TOP}
+\mbox{BOARD GEOMETRY/SILKSCREEN\_{}TOP}
+\mbox{BOARD GEOMETRY/OUTLINE}
+  \\
+
+  \rowcolor[gray]{.8}
+  SILKSCREEN\_{}BOTTOM &
+\mbox{REF DES/SILKSCREEN\_{}BOTTOM}
+\mbox{PACKAGE GEOMETRY/SILKSCREEN\_{}BOTTOM}
+\mbox{BOARD GEOMETRY/SILKSCREEN\_{}BOTTOM}
+\mbox{GEOMETRY/OUTLINE}
+ \\
+ SOLDERMASK\_{}TOP &
+\mbox{VIA CLASS/SOLDERMASK\_{}TOP}
+\mbox{PIN/ SOLDERMASK\_{}TOP}
+\mbox{PACKAGE GEOMETRY/ SOLDERMASK\_{}TOP}
+\mbox{BOARD GEOMETRY/ SOLDERMASK\_{}TOP}
+\mbox{BOARD GEOMETRY/OUTLINE}
+  \\
+  \rowcolor[gray]{.8}
+  SOLDERMASK\_{}BOTTOM &
+\mbox{VIA CLASS/SOLDERMASK\_{}BOTTOM}
+\mbox{PIN/SOLDERMASK\_{}BOTTOM}
+\mbox{PACKAGE GEOMETRY/SOLDERMASK\_{}BOTTOM}
+\mbox{BOARD GEOMETRY/SOLDERMASK\_{}BOTTOM}
+\mbox{BOARD GEOMETRY/OUTLINE}
+  \\
+
+
+  DRILL &
+\mbox{MANUFACTURING/NCLEGEND}
+\mbox{MANUFACTURING/NCLEGEND1-\textcolor[rgb]{1.00,0.00,0.00}{6}}
+\mbox{BOARD GEOMETRY/OUTLINE}
+ \\
+ \rowcolor[gray]{.8}
+  OUTLINE &
+BOARD GEOMETRY/OUTLINE \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+
+DRILL 层的 MANUFACTURING/NCLEGEND1-\textcolor[rgb]{1.00,0.00,0.00}{？}取决于板的层数。
+\subsection{投板说明}
+投板说明样例：（彩色字体为说明注释，不用写）\\
+
+
+\fcolorbox{red}{white}{
+\begin{minipage}[t]{7cm}
+
+投板说明 \\
+
+王凡  5161...  手机号\\
+板号：AQ7.822.920-b \\
+层数：10 \\
+板厚：3mm \\
+各层铜厚：1（oz）(\textcolor[rgb]{0.50,0.00,1.00}{即35um})\\
+数量：3块 \\
+1天加急（\textcolor[rgb]{0.50,0.00,1.00}{投外面}）\\
+民品加急（\textcolor[rgb]{0.50,0.00,1.00}{投8室}）\\
+
+各层层厚要求：\\
+top-2层  0.13mm\\
+2-3层  0.5mm\\
+3-4层  0.44mm\\
+4-5层   0.4mm \\
+5-6层  0.24mm \\
+6-7层  0.15mm\\
+7-8层  0.44mm \\
+8-9层  0.5mm\\
+9-bottom层  0.13mm\\
+
+过孔覆绿油(\textcolor[rgb]{0.50,0.00,1.00}{可选})\\
+其中P1为压接件。(\textcolor[rgb]{0.50,0.00,1.00}{CPCI连接器})
+\end{minipage}
+}
+
+\fcolorbox{white}{lightgray}{
+\begin{minipage}[t]{13cm}
+
+  {\center 投板文件要求说明如图所示，注意以下几点：\\}
+  \begin{enumerate}
+    \item 铜厚如不注明，默认顶层底层用 1/2(OZ),内部用 1(OZ),因考虑有盲孔顶层底层多次镀铜，
+          铜厚会由 1/2 OZ 增加到 50um 左右，计算时仍按 1oz 进行 1(oz)=35um。
+    \item 整板镍金会提高板的性能，需多加手续费 50 以及每平方 mm 1毛左右的价钱（仅个人记忆参考），量产或其他工程项目可去除此项。
+    \item 阻焊层颜色代表板的颜色，默认为绿，其他颜色包括黑、红、蓝、橙等，可自己要求，
+          但 PCB 中心其他颜色备量较少，经常没有其他颜色的阻焊，这项关系不大。
+    \item 板厚 3 是由阻抗要求决定，标准 CPCI 系统板为 1.6mm，但经过计算阻抗所需的最小厚度如图所示，
+          故选 3mm
+    \item 按此要求设计出的各层阻抗如下表：默认按线宽 0.178mm，差分线距 0.178mm。
+          各层厚按PCB中心的芯板和半固化件的种类厚度序列决定，不能取任意值
+    \item 加急费 500 元左右，10 层板有盲埋孔加急要 10 天以上，其他层少的不加急大概一周左右，视情况而定，
+         主板等高密印制板容易做坏板，时间又会延长，请根据情况决定是否加急
+    \item 必要时须注明 CPCI连接器 J1~J5 为压接件，PCB 中心按压接件标准来制作，
+          否则会出现压不上或压上后不紧的情况。
+  \end{enumerate}
+
+
+\end{minipage}
+}

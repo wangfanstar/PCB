@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%%%      说  明      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                    本文为paflatex的模板
+%           主要适合用pdflatex编译，需用老版的winedt，否则中文书签乱码
+%               或者用执行 gbk2uni 不带后缀的输入文件名 再用pdflatex编译
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[11pt,openany,a4paper,oneside]{book}  % 11pt约五号字体，openright每章从右边（奇数页）开始，A4纸张，双面打印，
+
+
+%%%%%%%%%%%%%%%%%%%%导引区%%%%%%%%%%%%%%%%%%%
+
+\input{format/package}          % 加入导引区 宏包
+\input{format/pdflatex_format}  % 加入导引区 各种格式
+
+
+%%%%%%%%%%%%%%%% 文章开始 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%% 中文化 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 标题封面 %%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{preface/TITLE}         %封面
+
+\fancyhf{}
+
+\title{\textbf{\yihao \textcolor[rgb]{0.75,0.75,0.75}{PCB 笔记}}}
+\author{\kai王\quad凡\\[0.3mm] wangfanstar@163.com}
+\date{\itshape Version\_{} \textcolor[rgb]{0.00,0.50,0.75}{\today}}
+\maketitle
+\pagestyle{empty}
+
+\begin{center}
+\textbf{版本更改记录}
+\end{center}
+
+\begin{tabularx}{14cm}{ccX}
+  \toprule
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+   \textbf{版本号} & \textbf{作者} & \textbf{备注} \\
+  \midrule\rowcolor{lightgray}
+  2011.07.01 & 王凡 &  转接板板号为354和822，功能板板号为335和820系列，原来写反了 \\
+
+   &  &   \\
+  \bottomrule
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%  摘要 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\input{format/frontmatter}%中文化
+\clearpage
+
+\include{preface/ZAIYAO}
+
+%%%%%%%%%%%%%%%%%%%%%%%  目录  %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\textcolor{blue}{目~~~~录}}
+\fancyhead[R]{\song\wuhao 目录}
+\tableofcontents
+\thispagestyle{fancy}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\textcolor{blue}{图目录}}
+\fancyhead[R]{\song\wuhao 图目录}
+\listoffigures
+\thispagestyle{fancy}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{\textcolor{blue}{表目录}}
+\fancyhead[R]{\song\wuhao 表目录}
+\listoftables
+\clearpage
+\phantomsection
+
+
+\thispagestyle{fancy} \fancyhead[R]{\song\wuhao PCB 笔记}
+
+%%%%%%%%%%%%%%%  章节  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\xiaosi
+\mainmatter
+\input{format/mainmatter}
+\clearpage
+
+
+
+%\include{body/CHAPTER1}         %
+
+\include{body/CHAPTER2}         %cadence投板文件的制作
+
+\include{body/CHAPTER3}         %一些技巧
+
+\include{body/CHAPTER4}         %推荐软件
+
+
+\backmatter                 %以下去除章的计数
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 参考文献 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{FORMAT/BACKMATTER}
+
+\include{reference/REF}                         %参考文献
+
+\setcounter{section}{0}
+\include{appendix/APPENDIX}                     %附录
+
+\include{appendix/ZHIXIE}                       %致谢
+
+\addcontentsline{toc}{chapter}{\textcolor{blue}{致谢}}            %加入致谢到目录
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
